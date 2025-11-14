@@ -333,12 +333,11 @@ export default function Home() {
 
           <div className="max-w-6xl mx-auto">
             <div className="bg-card rounded-lg border border-border overflow-hidden shadow-lg mb-8">
-              <div className="relative w-full bg-muted/50 flex items-center justify-center" style={{ minHeight: "450px" }}>
+              <div className="relative w-full bg-muted/50 flex items-center justify-center" style={{ maxHeight: "450px" }}>
                 <img
                   src={screenshots[selectedScreenshot].src}
                   alt={screenshots[selectedScreenshot].title}
                   className="w-auto h-full object-contain px-4 py-8"
-                  style={{ minHeight: "450px" }}
                 />
               </div>
             </div>
@@ -413,7 +412,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
               <img
-                src="/sportlink-app-icon.png"
+                src="/sportlink-icon.png"
                 alt="SportLink logo"
                 className="w-8 h-8 rounded-lg object-cover"
               />
