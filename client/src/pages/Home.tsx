@@ -333,7 +333,7 @@ export default function Home() {
 
           <div className="max-w-6xl mx-auto">
             <div className="bg-card rounded-lg border border-border overflow-hidden shadow-lg mb-8">
-              <div className="relative w-full bg-muted/50 flex items-center justify-center" style={{ height: "450px" }}>
+              <div className="relative w-full bg-muted/50 flex items-center justify-center" style={{ height: "650px" }}>
                 <img
                   src={screenshots[selectedScreenshot].src}
                   alt={screenshots[selectedScreenshot].title}
