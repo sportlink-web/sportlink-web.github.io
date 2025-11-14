@@ -338,6 +338,7 @@ export default function Home() {
                   src={screenshots[selectedScreenshot].src}
                   alt={screenshots[selectedScreenshot].title}
                   className="w-auto h-full object-contain px-4 py-8"
+                  style={{ minHeight: "450px" }}
                 />
               </div>
             </div>
