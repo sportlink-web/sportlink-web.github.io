@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,6 +23,20 @@ export default function Home() {
   // The userAuth hooks provides authentication state
   // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
   let { user, loading, error, isAuthenticated, logout } = useAuth();
+  const [selectedScreenshot, setSelectedScreenshot] = useState(0);
+
+  const screenshots = [
+    { src: "/screenshots/photo_splashscreen.png", title: "Splash Screen" },
+    { src: "/screenshots/photo_connexion.png", title: "Login" },
+    { src: "/screenshots/photo_accueil_haut.png", title: "Home" },
+    { src: "/screenshots/photo_creer_activite_haut.png", title: "Create Activity" },
+    { src: "/screenshots/photo_liste_filtre.png", title: "Filtered List" },
+    { src: "/screenshots/photo_activites_details_haut.png", title: "Activity Details" },
+    { src: "/screenshots/photo_modifier_activite.png", title: "Edit Activity" },
+    { src: "/screenshots/photo_carte_filtre.png", title: "Map with Filters" },
+    { src: "/screenshots/photo_bookings_hosting.png", title: "Bookings & Hosting" },
+    { src: "/screenshots/photo_profil.png", title: "User Profile" }
+  ];
 
   return (
     <div className="min-h-screen">
@@ -63,6 +78,10 @@ export default function Home() {
               <Button size="lg" className="text-lg px-8 py-6" disabled>
                 <Calendar className="w-5 h-5 mr-2" />
                 Coming Summer 2026
+              </Button>
+              <Button size="lg" variant="outline" className="text-lg px-8 py-6">
+                <Github className="w-5 h-5 mr-2" />
+                View on GitHub
               </Button>
             </div>
             <div className="mt-12 flex items-center justify-center gap-8 text-sm text-muted-foreground">
@@ -314,40 +333,27 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto">
-            <Card className="bg-accent/30 border-2">
-              <CardContent className="p-12">
-                <div className="text-center space-y-4">
-                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                    <Smartphone className="w-10 h-10 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-semibold">Screenshots Gallery</h3>
-                  <p className="text-muted-foreground max-w-md mx-auto">
-                    This section is ready to showcase app screenshots including splash screen, home views, activity details, interactive maps, creation flows, registration process, and profile management.
-                  </p>
-                  <div className="pt-4">
-                    <Badge variant="secondary" className="text-sm px-4 py-2">
-                      Images can be added to this section
-                    </Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-card rounded-lg border border-border overflow-hidden shadow-lg mb-8">
+              <div className="relative w-full bg-muted/50 flex items-center justify-center" style={{ minHeight: "450px" }}>
+                <img
+                  src={screenshots[selectedScreenshot].src}
+                  alt={screenshots[selectedScreenshot].title}
+                  className="w-auto h-full object-contain px-4 py-8"
+                />
+              </div>
+            </div>
 
-            <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {[
-                "Splash Screen",
-                "Home Views",
-                "Activity Details",
-                "Interactive Map",
-                "Create Activity",
-                "User Registration",
-                "Profile Management",
-                "Filters & Search"
-              ].map((item, index) => (
-                <div key={index} className="p-4 bg-muted/50 rounded-lg border border-border">
-                  <p className="text-sm font-medium text-center">{item}</p>
-                </div>
+            <div className="flex flex-wrap gap-3 justify-center">
+              {screenshots.map((screenshot, index) => (
+                <Button
+                  key={index}
+                  onClick={() => setSelectedScreenshot(index)}
+                  variant={selectedScreenshot === index ? "default" : "outline"}
+                  className="text-sm px-4 py-2 transition-all duration-200"
+                >
+                  {screenshot.title}
+                </Button>
               ))}
             </div>
           </div>
@@ -398,7 +404,6 @@ export default function Home() {
               </CardContent>
             </Card>
           </div>
-
 
         </div>
       </section>

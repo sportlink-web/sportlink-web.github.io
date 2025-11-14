@@ -5,13 +5,7 @@ import { httpBatchLink, TRPCClientError } from "@trpc/client";
 import { createRoot } from "react-dom/client";
 import superjson from "superjson";
 import App from "./App";
-import {
-  getLoginUrl,
-  APP_TITLE,
-  APP_LOGO,
-  ANALYTICS_ENDPOINT,
-  ANALYTICS_WEBSITE_ID,
-} from "./const";
+import { getLoginUrl } from "./const";
 import "./index.css";
 
 const queryClient = new QueryClient({
@@ -61,36 +55,6 @@ const trpcClient = trpc.createClient({
     }),
   ],
 });
-
-if (typeof document !== "undefined") {
-  document.title = APP_TITLE;
-
-  const iconSelectors = [
-    'link[rel="icon"]',
-    'link[rel="apple-touch-icon"]',
-  ];
-  iconSelectors.forEach(selector => {
-    const el = document.querySelector<HTMLLinkElement>(selector);
-    if (el) {
-      el.href = APP_LOGO;
-    }
-  });
-
-  if (ANALYTICS_ENDPOINT && ANALYTICS_WEBSITE_ID) {
-    const existingAnalyticsScript = document.querySelector<HTMLScriptElement>(
-      'script[data-analytics="umami"]'
-    );
-    if (!existingAnalyticsScript) {
-      const script = document.createElement("script");
-      script.defer = true;
-      const endpoint = ANALYTICS_ENDPOINT.replace(/\/$/, "");
-      script.src = `${endpoint}/umami`;
-      script.dataset.websiteId = ANALYTICS_WEBSITE_ID;
-      script.dataset.analytics = "umami";
-      document.head.appendChild(script);
-    }
-  }
-}
 
 createRoot(document.getElementById("root")!).render(
   <trpc.Provider client={trpcClient} queryClient={queryClient as any}>
