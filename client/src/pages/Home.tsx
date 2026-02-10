@@ -49,9 +49,9 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <img
-                src="/sportlink-icon.png"
+                src="/screenshots/sportlink-icon.png"
                 alt="SportLink logo"
-                className="w-10 h-10 rounded-xl object-cover"
+                className="w-10 h-10 rounded-md object-cover"
               />
               <span className="text-xl font-bold">SportLink</span>
             </div>
@@ -415,9 +415,9 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
               <img
-                src="/sportlink-icon.png"
+                src="/screenshots/sportlink-icon.png"
                 alt="SportLink logo"
-                className="w-8 h-8 rounded-lg object-cover"
+                className="w-8 h-8 rounded-sm object-cover"
               />
               <span className="font-semibold text-lg">SportLink</span>
             </div>
