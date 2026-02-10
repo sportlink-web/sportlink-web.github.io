@@ -26,15 +26,19 @@ export default function Home() {
   const [selectedScreenshot, setSelectedScreenshot] = useState(0);
 
   const screenshots = [
-    { src: "/screenshots/photo_splashscreen.png", title: "Splash Screen" },
-    { src: "/screenshots/photo_connexion.png", title: "Login" },
-    { src: "/screenshots/photo_accueil_haut.png", title: "Home" },
-    { src: "/screenshots/photo_filtre_activites.png", title: "Discover List" },
-    { src: "/screenshots/photo_carte_filtre.png", title: "Discover Map" },
-    { src: "/screenshots/photo_activites_details_haut.png", title: "Activity Details" },
-    { src: "/screenshots/photo_creer_activite_haut.png", title: "Create Activity" },
-    { src: "/screenshots/photo_bookings_hosting.png", title: "Bookings" },
-    { src: "/screenshots/photo_profil.png", title: "User Profile" }
+    { src: "/screenshots/splashscreen.PNG", title: "Splash Screen" },
+    { src: "/screenshots/auth-signin.PNG", title: "Sign In" },
+    { src: "/screenshots/auth-signup.PNG", title: "Sign Up" },
+    { src: "/screenshots/home.PNG", title: "Home" },
+    { src: "/screenshots/my-progress.PNG", title: "Personal Progress" },
+    { src: "/screenshots/discover-list.PNG", title: "Discover List" },
+    { src: "/screenshots/discover-map.PNG", title: "Discover Map" },
+    { src: "/screenshots/activity-details.PNG", title: "Activity Details" },
+    { src: "/screenshots/activity-details-2.PNG", title: "Activity Details 2" },
+    { src: "/screenshots/create-activity.PNG", title: "Create Activity" },
+    { src: "/screenshots/bookings.PNG", title: "Bookings" },
+    { src: "/screenshots/profile.PNG", title: "Profile" },
+    { src: "/screenshots/edit-profile.PNG", title: "Edit Profile" }
   ];
 
   return (
@@ -73,12 +77,12 @@ export default function Home() {
               Connect Through Sports
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              SportLink is a native iOS application that brings sports enthusiasts together. Create, discover, and join sports activities in your area with real-time updates and interactive maps.
+              SportLink helps people organize, discover, and join local sports sessions. From discovery to booking, every step is designed for a fast and intuitive mobile experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="lg" className="text-lg px-8 py-6" disabled>
                 <Calendar className="w-5 h-5 mr-2" />
-                Coming Summer 2026
+                iOS Release In Progress
               </Button>
             </div>
             <div className="mt-12 flex items-center justify-center gap-8 text-sm text-muted-foreground">
@@ -105,7 +109,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Powerful Features</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Everything you need to organize and participate in sports activities, built with native iOS performance and design.
+              Core product capabilities for creating activities, finding nearby sessions, and managing participation in real time.
             </p>
           </div>
 
@@ -115,7 +119,7 @@ export default function Home() {
                 <Shield className="w-12 h-12 text-primary mb-4" />
                 <CardTitle>Complete Authentication</CardTitle>
                 <CardDescription>
-                  Secure user registration and login with Firebase Authentication. Manage profiles with sports preferences, availability schedules, and optional profile photos.
+                  Secure sign-in and registration with Firebase Authentication, including profile setup, sports preferences, and availability.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -125,7 +129,7 @@ export default function Home() {
                 <Users className="w-12 h-12 text-primary mb-4" />
                 <CardTitle>User Profiles</CardTitle>
                 <CardDescription>
-                  Personalized profiles displaying favorite sports, weekly availability, profile pictures, and activity history. Full profile management and customization.
+                  Personalized profiles with sports interests, schedule preferences, and editable account information.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -135,7 +139,7 @@ export default function Home() {
                 <MapPin className="w-12 h-12 text-primary mb-4" />
                 <CardTitle>Interactive Maps</CardTitle>
                 <CardDescription>
-                  Explore sports facilities with custom markers, multi-sport filters, date-based filtering, and adaptive zoom. Powered by Apple MapKit.
+                  Explore venues and activities with map markers, filters, and zoom-aware discovery powered by Apple MapKit.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -145,7 +149,7 @@ export default function Home() {
                 <Eye className="w-12 h-12 text-primary mb-4" />
                 <CardTitle>Search & Filter Activities</CardTitle>
                 <CardDescription>
-                  View activities as map markers or sortable lists. Filter by date, distance, and sport type. Exclude activities you've already organized or joined.
+                  Switch between map and list views, then refine results by date, distance, and sport type.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -155,7 +159,7 @@ export default function Home() {
                 <Calendar className="w-12 h-12 text-primary mb-4" />
                 <CardTitle>Create & Manage Activities</CardTitle>
                 <CardDescription>
-                  Structured activity creation with title, sport, location, date, time, participant limits, descriptions, and invitations. Automatic conflict detection and validation.
+                  Create complete events with schedule, location, participant limits, and details, then update or manage them later.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -165,7 +169,7 @@ export default function Home() {
                 <Zap className="w-12 h-12 text-primary mb-4" />
                 <CardTitle>Real-time Updates</CardTitle>
                 <CardDescription>
-                  Dynamic synchronization of activities and participation using Firebase Firestore. See changes instantly as they happen across all devices.
+                  Activity and participation changes sync instantly with Firestore to keep everyone on the same page.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -175,7 +179,7 @@ export default function Home() {
                 <TrendingUp className="w-12 h-12 text-primary mb-4" />
                 <CardTitle>Smart Recommendations</CardTitle>
                 <CardDescription>
-                  Personalized activity suggestions on the home screen, adaptable to your sports preferences and availability patterns.
+                  The home experience surfaces relevant activity suggestions based on your profile and engagement.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -185,7 +189,7 @@ export default function Home() {
                 <CheckCircle2 className="w-12 h-12 text-primary mb-4" />
                 <CardTitle>Accessibility Support</CardTitle>
                 <CardDescription>
-                  Full VoiceOver compatibility with descriptive labels on all interactive elements, ensuring an inclusive experience for all users.
+                  Accessibility-first interactions, including VoiceOver-friendly labels and predictable navigation patterns.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -199,7 +203,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Built with Modern Technology</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Native iOS development leveraging the latest frameworks and cloud infrastructure for optimal performance and reliability.
+              Native iOS architecture backed by Firebase services for reliability, speed, and maintainability.
             </p>
           </div>
 
@@ -326,7 +330,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">App Screenshots</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Explore the intuitive interface and seamless user experience of SportLink.
+              A visual walkthrough of the key user journeys across onboarding, discovery, booking, and profile management.
             </p>
           </div>
 
@@ -363,7 +367,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Quality & Performance</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Rigorous testing and optimization ensure a reliable, performant experience across all supported devices.
+              Testing and optimization workflows focused on stability, responsiveness, and day-to-day reliability.
             </p>
           </div>
 
@@ -374,7 +378,7 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Comprehensive XCTest coverage including object conversion, distance calculations, ViewModel initialization, and critical user flows validation.
+                  XCTest coverage across models, ViewModels, and key user flows to reduce regressions as features evolve.
                 </p>
               </CardContent>
             </Card>
@@ -385,7 +389,7 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  CPU usage maintained between 25-35% on 4 cores. Optimized RAM consumption during animations, view transitions, and map rendering.
+                  Iterative profiling to improve CPU and memory behavior during map rendering, navigation, and list interactions.
                 </p>
               </CardContent>
             </Card>
@@ -396,7 +400,7 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Real user testing with quantitative metrics (clicks, time, errors) and qualitative feedback to refine the experience.
+                  Structured validation with real users and practical scenarios to refine UX decisions before release.
                 </p>
               </CardContent>
             </Card>
@@ -418,7 +422,7 @@ export default function Home() {
               <span className="font-semibold text-lg">SportLink</span>
             </div>
             <p className="text-sm text-muted-foreground text-center md:text-left">
-              A native iOS app connecting sports enthusiasts • Built with Swift & Firebase
+              A native iOS app for discovering and organizing local sports activities
             </p>
             <div className="flex items-center gap-4">
               <Button variant="ghost" size="sm">
@@ -428,7 +432,7 @@ export default function Home() {
           </div>
           <div className="mt-8 pt-8 border-t border-border text-center">
             <p className="text-sm text-muted-foreground">
-              © 2024 SportLink. All rights reserved.
+              © 2026 SportLink. All rights reserved.
             </p>
           </div>
         </div>
