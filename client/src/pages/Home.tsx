@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
+import { useTheme } from "@/contexts/ThemeContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,13 +17,15 @@ import {
   TrendingUp,
   Eye,
   Github,
-  Download
+  Moon,
+  Sun
 } from "lucide-react";
 
 export default function Home() {
   // The userAuth hooks provides authentication state
   // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
   let { user, loading, error, isAuthenticated, logout } = useAuth();
+  const { theme, toggleTheme, switchable } = useTheme();
   const [selectedScreenshot, setSelectedScreenshot] = useState(0);
 
   const screenshots = [
@@ -42,7 +45,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen text-[#6f1220] dark:text-[#ffd6dd] [&_.text-muted-foreground]:text-[#963444] dark:[&_.text-muted-foreground]:text-[#e7b8c1]">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-md border-b border-border z-50">
         <div className="container mx-auto px-6 py-4">
@@ -53,13 +56,26 @@ export default function Home() {
                 alt="SportLink logo"
                 className="w-10 h-10 rounded-md object-cover"
               />
-              <span className="text-xl font-bold">SportLink</span>
+              <span className="text-xl font-bold text-[#d11b37] dark:text-[#ff9cab]">SportLink</span>
             </div>
             <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">Features</a>
-              <a href="#technology" className="text-sm font-medium hover:text-primary transition-colors">Technology</a>
-              <a href="#screenshots" className="text-sm font-medium hover:text-primary transition-colors">Screenshots</a>
-              <a href="#testing" className="text-sm font-medium hover:text-primary transition-colors">Testing</a>
+              <a href="#features" className="text-sm font-medium text-[#8f1528] dark:text-[#f6c1ca] hover:text-[#d11b37] dark:hover:text-[#ff9cab] transition-colors">Features</a>
+              <a href="#technology" className="text-sm font-medium text-[#8f1528] dark:text-[#f6c1ca] hover:text-[#d11b37] dark:hover:text-[#ff9cab] transition-colors">Technology</a>
+              <a href="#screenshots" className="text-sm font-medium text-[#8f1528] dark:text-[#f6c1ca] hover:text-[#d11b37] dark:hover:text-[#ff9cab] transition-colors">Screenshots</a>
+              <a href="#testing" className="text-sm font-medium text-[#8f1528] dark:text-[#f6c1ca] hover:text-[#d11b37] dark:hover:text-[#ff9cab] transition-colors">Testing</a>
+            </div>
+            <div className="flex items-center">
+              {switchable && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={toggleTheme}
+                  className="border-[#d11b37]/40 text-[#d11b37] hover:bg-[#d11b37]/10 dark:text-[#ff9cab] dark:border-[#ff9cab]/50 dark:hover:bg-[#ff9cab]/10"
+                >
+                  {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                  <span className="ml-2 hidden sm:inline">{theme === "dark" ? "Light" : "Dark"}</span>
+                </Button>
+              )}
             </div>
 
           </div>
@@ -67,13 +83,13 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-accent via-background to-background">
+      <section className="pt-32 pb-20 bg-gradient-to-br from-[#ffe9ed] via-background to-background dark:from-[#351018] dark:via-background dark:to-background">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 text-sm px-4 py-2" variant="secondary">
+            <Badge className="mb-6 text-sm px-4 py-2 border-[#d11b37]/20 bg-[#d11b37]/10 text-[#a0142b] dark:bg-[#ff9cab]/20 dark:text-[#ffd3da]" variant="secondary">
               Native iOS App • Swift & SwiftUI
             </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#d11b37] to-[#9b1630] dark:from-[#ff9cab] dark:to-[#ffd1d9] bg-clip-text text-transparent">
               Connect Through Sports
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -107,7 +123,7 @@ export default function Home() {
       <section id="features" className="py-20 bg-background">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Powerful Features</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#b3172f] dark:text-[#ffb6c2]">Powerful Features</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Core product capabilities for creating activities, finding nearby sessions, and managing participation in real time.
             </p>
@@ -201,7 +217,7 @@ export default function Home() {
       <section id="technology" className="py-20 bg-accent/30">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Built with Modern Technology</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#b3172f] dark:text-[#ffb6c2]">Built with Modern Technology</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Native iOS architecture backed by Firebase services for reliability, speed, and maintainability.
             </p>
@@ -328,7 +344,7 @@ export default function Home() {
       <section id="screenshots" className="py-20 bg-background">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">App Screenshots</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#b3172f] dark:text-[#ffb6c2]">App Screenshots</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               A visual walkthrough of the key user journeys across onboarding, discovery, booking, and profile management.
             </p>
@@ -365,7 +381,7 @@ export default function Home() {
       <section id="testing" className="py-20 bg-accent/30">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Quality & Performance</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#b3172f] dark:text-[#ffb6c2]">Quality & Performance</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Testing and optimization workflows focused on stability, responsiveness, and day-to-day reliability.
             </p>
