@@ -544,6 +544,18 @@ export default function Home() {
               {t.footer.tagline}
             </p>
             <div className="flex items-center gap-4">
+              <a
+                href="/privacy-policy"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="/terms-and-conditions"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Terms
+              </a>
               <Button variant="ghost" size="sm">
                 <Github className="w-5 h-5" />
               </Button>
