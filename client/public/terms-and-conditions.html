@@ -34,6 +34,28 @@
             color: #b91c1c;
         }
 
+        .doc-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .doc-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .doc-header h1 {
+            margin: 0;
+            font-size: 20px;
+            line-height: 1.2;
+        }
+
         @media (min-width: 640px) {
             main {
                 padding: 28px 28px 36px;
@@ -43,6 +65,10 @@
 </head>
 <body>
     <main>
+        <header class="doc-header">
+            <img src="/screenshots/sportlink-icon.png" alt="SportLink logo">
+            <h1>SportLink</h1>
+        </header>
         <p><strong>Terms &amp; Conditions</strong></p>
 
         <p>These terms and conditions apply to the SportLink app (hereby referred to as "Application") for mobile devices that was created by Mathias La Rochelle (hereby referred to as "Service Provider") as a Free service.</p>
