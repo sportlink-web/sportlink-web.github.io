@@ -16,7 +16,7 @@ import {
   CheckCircle2,
   TrendingUp,
   Eye,
-  Github,
+  ArrowUpRight,
   Moon,
   Sun
 } from "lucide-react";
@@ -28,6 +28,7 @@ export default function Home() {
   const { theme, toggleTheme, switchable } = useTheme();
   const [language, setLanguage] = useState<"en" | "fr">("en");
   const [selectedScreenshot, setSelectedScreenshot] = useState(0);
+  const appStoreUrl = "https://apps.apple.com/ca/app/sportlink/id6757758569";
 
   const screenshots = [
     { src: "/screenshots/splashscreen.PNG", title: { en: "Splash Screen", fr: "Ecran de demarrage" } },
@@ -53,13 +54,17 @@ export default function Home() {
       testing: language === "fr" ? "Qualite" : "Testing",
     },
     hero: {
-      badge: language === "fr" ? "Application iOS native • Swift & SwiftUI" : "Native iOS App • Swift & SwiftUI",
+      badge: language === "fr" ? "Officiellement lancee • Application iOS native" : "Officially Launched • Native iOS App",
       title: language === "fr" ? "Connecter les gens par le sport" : "Connect Through Sports",
       description:
         language === "fr"
           ? "SportLink aide les gens a organiser, decouvrir et rejoindre des activites sportives locales. De la decouverte a la reservation, chaque etape est pensee pour une experience mobile rapide et intuitive."
           : "SportLink helps people organize, discover, and join local sports sessions. From discovery to booking, every step is designed for a fast and intuitive mobile experience.",
-      cta: language === "fr" ? "Sortie iOS en cours" : "iOS Release In Progress",
+      cta: language === "fr" ? "Telecharger sur l'App Store" : "Download on the App Store",
+      status:
+        language === "fr"
+          ? "Disponible maintenant sur l'App Store."
+          : "Now available on the App Store.",
       realtime: language === "fr" ? "Synchronisation temps reel" : "Real-time Sync",
       backend: language === "fr" ? "Backend Firebase" : "Firebase Backend",
     },
@@ -166,11 +171,17 @@ export default function Home() {
               {t.hero.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="text-lg px-8 py-6" disabled>
-                <Calendar className="w-5 h-5 mr-2" />
-                {t.hero.cta}
+              <Button asChild size="lg" className="text-lg px-8 py-6">
+                <a href={appStoreUrl} target="_blank" rel="noreferrer">
+                  <Smartphone className="w-5 h-5" />
+                  {t.hero.cta}
+                  <ArrowUpRight className="w-5 h-5" />
+                </a>
               </Button>
             </div>
+            <p className="mt-4 text-sm font-medium text-[#8f1528] dark:text-[#f6c1ca]">
+              {t.hero.status}
+            </p>
             <div className="mt-12 flex items-center justify-center gap-8 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Smartphone className="w-4 h-4" />
@@ -517,8 +528,8 @@ export default function Home() {
               <CardContent>
                 <p className="text-sm text-muted-foreground">
                   {tr(
-                    "Structured validation with real users and practical scenarios to refine UX decisions before release.",
-                    "Validation structuree avec de vrais utilisateurs et scenarios pratiques pour affiner l'UX avant la sortie.",
+                    "Structured validation with real users and practical scenarios to keep refining UX after launch.",
+                    "Validation structuree avec de vrais utilisateurs et scenarios pratiques pour continuer a affiner l'UX apres le lancement.",
                   )}
                 </p>
               </CardContent>
@@ -545,6 +556,14 @@ export default function Home() {
             </p>
             <div className="flex items-center gap-4">
               <a
+                href={appStoreUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                App Store
+              </a>
+              <a
                 href="/open-source-licenses"
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
@@ -562,9 +581,6 @@ export default function Home() {
               >
                 Terms
               </a>
-              <Button variant="ghost" size="sm">
-                <Github className="w-5 h-5" />
-              </Button>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-border text-center">
