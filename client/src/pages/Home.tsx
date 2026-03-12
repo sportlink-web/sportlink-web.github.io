@@ -545,6 +545,12 @@ export default function Home() {
             </p>
             <div className="flex items-center gap-4">
               <a
+                href="/open-source-licenses"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Open Source
+              </a>
+              <a
                 href="/privacy-policy"
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
