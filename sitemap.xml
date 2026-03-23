@@ -2,9 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://www.sportlinkapp.ca/</loc>
-        <lastmod>2026-03-12</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
-    <!-- Add more URLs if necessary -->
+    <url>
+        <loc>https://www.sportlinkapp.ca/account-deletion</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
 </urlset>
