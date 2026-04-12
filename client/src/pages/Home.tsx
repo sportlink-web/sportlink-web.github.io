@@ -239,7 +239,7 @@ export default function Home() {
                     className="transition-transform duration-200 hover:-translate-y-0.5"
                   >
                     <img
-                      src="/store-badges/app-store-badge.svg"
+                      src="/store-badges/app-store-badge.png"
                       alt={t.download.appStoreAlt}
                       className="h-14 w-auto sm:h-16"
                     />
@@ -251,7 +251,7 @@ export default function Home() {
                     className="transition-transform duration-200 hover:-translate-y-0.5"
                   >
                     <img
-                      src="/store-badges/google-play-badge.svg"
+                      src="/store-badges/google-play-badge.png"
                       alt={t.download.playStoreAlt}
                       className="h-14 w-auto sm:h-16"
                     />
@@ -407,7 +407,7 @@ export default function Home() {
                     className="transition-transform duration-200 hover:-translate-y-0.5"
                   >
                     <img
-                      src="/store-badges/app-store-badge.svg"
+                      src="/store-badges/app-store-badge.png"
                       alt={t.download.appStoreAlt}
                       className="h-14 w-auto sm:h-16"
                     />
@@ -419,7 +419,7 @@ export default function Home() {
                     className="transition-transform duration-200 hover:-translate-y-0.5"
                   >
                     <img
-                      src="/store-badges/google-play-badge.svg"
+                      src="/store-badges/google-play-badge.png"
                       alt={t.download.playStoreAlt}
                       className="h-14 w-auto sm:h-16"
                     />
