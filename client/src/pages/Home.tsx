@@ -1,142 +1,201 @@
 import { useState } from "react";
-import { useAuth } from "@/_core/hooks/useAuth";
-import { useTheme } from "@/contexts/ThemeContext";
+import { ArrowRight, MapPin, Moon, Sun, Trophy, Users } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { 
-  Smartphone, 
-  MapPin, 
-  Users, 
-  Calendar, 
-  Shield, 
-  Zap, 
-  Database,
-  Code,
-  CheckCircle2,
-  TrendingUp,
-  Eye,
-  ArrowUpRight,
-  Moon,
-  Sun
-} from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Home() {
-  // The userAuth hooks provides authentication state
-  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
-  let { user, loading, error, isAuthenticated, logout } = useAuth();
   const { theme, toggleTheme, switchable } = useTheme();
   const [language, setLanguage] = useState<"en" | "fr">("en");
-  const [selectedScreenshot, setSelectedScreenshot] = useState(0);
-  const appStoreUrl = "https://apps.apple.com/ca/app/sportlink/id6757758569";
 
-  const screenshots = [
-    { src: "/screenshots/splashscreen.PNG", title: { en: "Splash Screen", fr: "Ecran de demarrage" } },
-    { src: "/screenshots/auth-signin.PNG", title: { en: "Sign In", fr: "Connexion" } },
-    { src: "/screenshots/auth-signup.PNG", title: { en: "Sign Up", fr: "Inscription" } },
-    { src: "/screenshots/home.PNG", title: { en: "Home", fr: "Accueil" } },
-    { src: "/screenshots/my-progress.PNG", title: { en: "Personal Progress", fr: "Progression" } },
-    { src: "/screenshots/discover-list.PNG", title: { en: "Discover List", fr: "Liste Decouvrir" } },
-    { src: "/screenshots/discover-map.PNG", title: { en: "Discover Map", fr: "Carte Decouvrir" } },
-    { src: "/screenshots/activity-details.PNG", title: { en: "Activity Details", fr: "Details Activite" } },
-    { src: "/screenshots/activity-details-2.PNG", title: { en: "Activity Details 2", fr: "Details Activite 2" } },
-    { src: "/screenshots/create-activity.PNG", title: { en: "Create Activity", fr: "Creer Activite" } },
-    { src: "/screenshots/bookings.PNG", title: { en: "Bookings", fr: "Reservations" } },
-    { src: "/screenshots/profile.PNG", title: { en: "Profile", fr: "Profil" } },
-    { src: "/screenshots/edit-profile.PNG", title: { en: "Edit Profile", fr: "Modifier Profil" } }
+  const appStoreUrl = "https://apps.apple.com/ca/app/sportlink/id6757758569";
+  const playStoreUrl = "https://play.google.com/store/apps/details?id=com.mlr.sportlink&pcampaignid=web_share";
+  const tr = (en: string, fr: string) => (language === "fr" ? fr : en);
+
+  const navItems = [
+    { href: "#story", label: tr("Story", "Vision") },
+    { href: "#community", label: tr("Community", "Communaute") },
+    { href: "#download", label: tr("Download", "Telecharger") },
+  ];
+
+  const heroHighlights = [
+    tr("Players, organizers, and clubs", "Joueurs, organisateurs et clubs"),
+    tr("A stronger local sports presence", "Une presence sportive locale plus forte"),
+    tr("Now on iOS and Android", "Maintenant sur iOS et Android"),
+  ];
+
+  const brandPillars = [
+    {
+      icon: Users,
+      title: tr("People first", "Les gens d'abord"),
+      description: tr(
+        "SportLink is built around the people who make local sport happen, from casual players to organizers and clubs.",
+        "SportLink est pense autour des personnes qui font vivre le sport local, des joueurs occasionnels aux organisateurs et aux clubs.",
+      ),
+    },
+    {
+      icon: MapPin,
+      title: tr("Closer communities", "Des communautes plus proches"),
+      description: tr(
+        "The brand is rooted in nearby connections, recurring participation, and the shared energy of local sessions.",
+        "La marque s'ancre dans les liens de proximite, la participation recurrente et l'energie partagee des activites locales.",
+      ),
+    },
+    {
+      icon: Trophy,
+      title: tr("Momentum that lasts", "Un elan qui dure"),
+      description: tr(
+        "The goal is to turn interest into action, and one-time activity into something people want to return to.",
+        "L'objectif est de transformer l'interet en action, puis une activite ponctuelle en habitude a laquelle on veut revenir.",
+      ),
+    },
   ];
 
   const t = {
-    nav: {
-      features: language === "fr" ? "Fonctionnalites" : "Features",
-      technology: language === "fr" ? "Technologie" : "Technology",
-      screenshots: language === "fr" ? "Captures" : "Screenshots",
-      testing: language === "fr" ? "Qualite" : "Testing",
-    },
     hero: {
-      badge: language === "fr" ? "Officiellement lancee • Application iOS native" : "Officially Launched • Native iOS App",
-      title: language === "fr" ? "Connecter les gens par le sport" : "Connect Through Sports",
-      description:
-        language === "fr"
-          ? "SportLink aide les gens a organiser, decouvrir et rejoindre des activites sportives locales. De la decouverte a la reservation, chaque etape est pensee pour une experience mobile rapide et intuitive."
-          : "SportLink helps people organize, discover, and join local sports sessions. From discovery to booking, every step is designed for a fast and intuitive mobile experience.",
-      cta: language === "fr" ? "Telecharger sur l'App Store" : "Download on the App Store",
-      status:
-        language === "fr"
-          ? "Disponible maintenant sur l'App Store."
-          : "Now available on the App Store.",
-      realtime: language === "fr" ? "Synchronisation temps reel" : "Real-time Sync",
-      backend: language === "fr" ? "Backend Firebase" : "Firebase Backend",
+      badge: tr(
+        "Local sports community • Available on iOS and Android",
+        "Communaute sportive locale • Disponible sur iOS et Android",
+      ),
+      title: tr(
+        "SportLink brings local sports communities together.",
+        "SportLink rapproche les communautes sportives locales.",
+      ),
+      description: tr(
+        "SportLink is a growing presence for players, organizers, clubs, and everyday athletes who want local sport to feel easier to join, easier to organize, and more alive.",
+        "SportLink est une presence en croissance pour les joueurs, organisateurs, clubs et sportifs du quotidien qui veulent un sport local plus simple a rejoindre, plus simple a organiser et plus vivant.",
+      ),
+      availability: tr(
+        "Available now on the App Store and Google Play.",
+        "Disponible maintenant sur l'App Store et Google Play.",
+      ),
+      secondaryCta: tr("See the bigger picture", "Voir la vision d'ensemble"),
     },
-    features: {
-      title: language === "fr" ? "Fonctionnalites principales" : "Powerful Features",
-      subtitle:
-        language === "fr"
-          ? "Les fonctions cles pour creer des activites, trouver des sessions proches et gerer la participation en temps reel."
-          : "Core product capabilities for creating activities, finding nearby sessions, and managing participation in real time.",
+    identity: {
+      badge: tr("What SportLink stands for", "Ce que represente SportLink"),
+      title: tr(
+        "A brand shaped by participation, belonging, and local energy.",
+        "Une marque portee par la participation, l'appartenance et l'energie locale.",
+      ),
+      description: tr(
+        "The intent is simple: help more people show up, meet others, and keep sport moving inside their own communities.",
+        "L'intention est simple : aider plus de gens a se presenter, rencontrer d'autres personnes et faire avancer le sport dans leurs propres communautes.",
+      ),
+      points: [
+        {
+          title: tr("Participation over friction", "La participation avant la friction"),
+          description: tr(
+            "Make it easier for people to join in and stay involved.",
+            "Rendre la participation plus simple et l'engagement plus durable.",
+          ),
+        },
+        {
+          title: tr("Belonging over isolation", "L'appartenance avant l'isolement"),
+          description: tr(
+            "Create more chances for people to find their place through sport.",
+            "Creer davantage d'occasions de trouver sa place par le sport.",
+          ),
+        },
+        {
+          title: tr("Local energy over empty reach", "L'energie locale avant la portee vide"),
+          description: tr(
+            "Focus on the communities, routines, and gatherings that actually happen nearby.",
+            "Mettre l'accent sur les communautes, les routines et les rassemblements qui existent reellement a proximite.",
+          ),
+        },
+      ],
     },
-    tech: {
-      title: language === "fr" ? "Construit avec des technologies modernes" : "Built with Modern Technology",
-      subtitle:
-        language === "fr"
-          ? "Architecture iOS native avec les services Firebase pour la fiabilite, la rapidite et la maintenabilite."
-          : "Native iOS architecture backed by Firebase services for reliability, speed, and maintainability.",
-      architectureTitle: language === "fr" ? "Vue d'ensemble de l'architecture" : "Architecture Overview",
-      architectureSubtitle:
-        language === "fr"
-          ? "Architecture propre et modulaire suivant les bonnes pratiques iOS"
-          : "Clean, modular architecture following iOS best practices",
+    story: {
+      eyebrow: tr("The bigger picture", "La vision"),
+      title: tr(
+        "SportLink is about the community behind the experience, not just one touchpoint.",
+        "SportLink parle de la communaute derriere l'experience, pas d'un seul point de contact.",
+      ),
+      paragraphOne: tr(
+        "Whether someone is looking for their next game, keeping a regular group active, or helping a club create more participation, SportLink exists to strengthen the rhythm of local sport.",
+        "Qu'il s'agisse de trouver sa prochaine partie, de garder un groupe actif ou d'aider un club a creer plus de participation, SportLink existe pour renforcer le rythme du sport local.",
+      ),
+      paragraphTwo: tr(
+        "That gives the brand room to grow into a wider community of people, partnerships, and opportunities that all revolve around showing up and playing together.",
+        "Cela donne a la marque l'espace necessaire pour grandir vers une communaute plus large de personnes, de partenariats et d'occasions qui tournent tous autour du fait de se presenter et jouer ensemble.",
+      ),
+      cardTitle: tr("Why that matters", "Pourquoi c'est important"),
+      cardDescription: tr(
+        "Local sport becomes stronger when people can move from interest to participation without unnecessary barriers.",
+        "Le sport local devient plus fort lorsque l'on passe de l'interet a la participation sans barrieres inutiles.",
+      ),
+      noteTitle: tr("Where it can grow", "Ou cela peut grandir"),
+      noteDescription: tr(
+        "SportLink can support players, organizers, clubs, and communities under one shared identity instead of reducing the story to one place.",
+        "SportLink peut soutenir joueurs, organisateurs, clubs et communautes sous une identite commune, au lieu de reduire l'histoire a un seul endroit.",
+      ),
     },
-    screenshots: {
-      title: language === "fr" ? "Captures d'ecran" : "App Screenshots",
-      subtitle:
-        language === "fr"
-          ? "Un apercu visuel des parcours cles: onboarding, decouverte, reservation et gestion du profil."
-          : "A visual walkthrough of the key user journeys across onboarding, discovery, booking, and profile management.",
+    community: {
+      eyebrow: tr("Brand pillars", "Piliers de marque"),
+      title: tr("Three ideas at the center of SportLink.", "Trois idees au centre de SportLink."),
+      subtitle: tr(
+        "This is the language of the brand: community, proximity, and momentum.",
+        "Voici le langage de la marque : communaute, proximite et elan.",
+      ),
     },
-    testing: {
-      title: language === "fr" ? "Qualite et performance" : "Quality & Performance",
-      subtitle:
-        language === "fr"
-          ? "Des workflows de test et d'optimisation axes sur la stabilite, la reactivite et la fiabilite."
-          : "Testing and optimization workflows focused on stability, responsiveness, and day-to-day reliability.",
+    download: {
+      title: tr("Take SportLink with you.", "Emmenez SportLink avec vous."),
+      description: tr(
+        "Choose the store that matches your device and join SportLink from there.",
+        "Choisissez la boutique qui correspond a votre appareil et rejoignez SportLink a partir de la.",
+      ),
+      availability: tr(
+        "Now available on both major mobile stores.",
+        "Desormais disponible sur les deux grandes boutiques mobiles.",
+      ),
+      appStoreAlt: tr("Download SportLink on the App Store", "Telecharger SportLink sur l'App Store"),
+      playStoreAlt: tr("Get SportLink on Google Play", "Telecharger SportLink sur Google Play"),
     },
     footer: {
-      tagline:
-        language === "fr"
-          ? "Une application iOS native pour decouvrir et organiser des activites sportives locales"
-          : "A native iOS app for discovering and organizing local sports activities",
-      rights: language === "fr" ? "Tous droits reserves." : "All rights reserved.",
+      tagline: tr(
+        "SportLink helps local sports communities meet, organize, and stay in motion.",
+        "SportLink aide les communautes sportives locales a se rencontrer, s'organiser et rester en mouvement.",
+      ),
+      openSource: tr("Open Source", "Open Source"),
+      privacy: tr("Privacy Policy", "Politique de confidentialite"),
+      terms: tr("Terms", "Conditions"),
+      rights: tr("All rights reserved.", "Tous droits reserves."),
     },
   };
-  const tr = (en: string, fr: string) => (language === "fr" ? fr : en);
 
   return (
-    <div className="min-h-screen text-[#6f1220] dark:text-[#ffd6dd] [&_.text-muted-foreground]:text-[#963444] dark:[&_.text-muted-foreground]:text-[#e7b8c1]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-md border-b border-border z-50">
+    <div className="min-h-screen overflow-x-hidden bg-background text-[#5f1220] dark:text-[#ffd6dd] [&_.text-muted-foreground]:text-[#8e3241] dark:[&_.text-muted-foreground]:text-[#e2b5be]">
+      <nav className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
         <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between gap-4">
+            <a href="#top" className="flex items-center gap-3">
               <img
                 src="/screenshots/sportlink-icon.png"
                 alt="SportLink logo"
-                className="w-10 h-10 rounded-md object-cover"
+                className="h-10 w-10 rounded-xl object-cover shadow-sm"
               />
               <span className="text-xl font-bold text-[#d11b37] dark:text-[#ff9cab]">SportLink</span>
+            </a>
+
+            <div className="hidden items-center gap-8 md:flex">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm font-medium text-[#8f1528] transition-colors hover:text-[#d11b37] dark:text-[#f6c1ca] dark:hover:text-[#ff9cab]"
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-sm font-medium text-[#8f1528] dark:text-[#f6c1ca] hover:text-[#d11b37] dark:hover:text-[#ff9cab] transition-colors">{t.nav.features}</a>
-              <a href="#technology" className="text-sm font-medium text-[#8f1528] dark:text-[#f6c1ca] hover:text-[#d11b37] dark:hover:text-[#ff9cab] transition-colors">{t.nav.technology}</a>
-              <a href="#screenshots" className="text-sm font-medium text-[#8f1528] dark:text-[#f6c1ca] hover:text-[#d11b37] dark:hover:text-[#ff9cab] transition-colors">{t.nav.screenshots}</a>
-              <a href="#testing" className="text-sm font-medium text-[#8f1528] dark:text-[#f6c1ca] hover:text-[#d11b37] dark:hover:text-[#ff9cab] transition-colors">{t.nav.testing}</a>
-            </div>
+
             <div className="flex items-center gap-2">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => setLanguage(language === "en" ? "fr" : "en")}
-                className="border-[#d11b37]/40 text-[#d11b37] hover:bg-[#d11b37]/10 dark:text-[#ff9cab] dark:border-[#ff9cab]/50 dark:hover:bg-[#ff9cab]/10"
+                className="border-[#d11b37]/40 text-[#d11b37] hover:bg-[#d11b37]/10 dark:border-[#ff9cab]/50 dark:text-[#ff9cab] dark:hover:bg-[#ff9cab]/10"
               >
                 {language === "en" ? "FR" : "EN"}
               </Button>
@@ -145,448 +204,289 @@ export default function Home() {
                   variant="outline"
                   size="sm"
                   onClick={toggleTheme}
-                  className="border-[#d11b37]/40 text-[#d11b37] hover:bg-[#d11b37]/10 dark:text-[#ff9cab] dark:border-[#ff9cab]/50 dark:hover:bg-[#ff9cab]/10"
+                  className="border-[#d11b37]/40 text-[#d11b37] hover:bg-[#d11b37]/10 dark:border-[#ff9cab]/50 dark:text-[#ff9cab] dark:hover:bg-[#ff9cab]/10"
                 >
-                  {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                  {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
                   <span className="ml-2 hidden sm:inline">{theme === "dark" ? "Light" : "Dark"}</span>
                 </Button>
               )}
             </div>
-
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-[#ffe9ed] via-background to-background dark:from-[#351018] dark:via-background dark:to-background">
-        <div className="container">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 text-sm px-4 py-2 border-[#d11b37]/20 bg-[#d11b37]/10 text-[#a0142b] dark:bg-[#ff9cab]/20 dark:text-[#ffd3da]" variant="secondary">
-              {t.hero.badge}
-            </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#d11b37] to-[#9b1630] dark:from-[#ff9cab] dark:to-[#ffd1d9] bg-clip-text text-transparent">
-              {t.hero.title}
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              {t.hero.description}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button asChild size="lg" className="text-lg px-8 py-6">
-                <a href={appStoreUrl} target="_blank" rel="noreferrer">
-                  <Smartphone className="w-5 h-5" />
-                  {t.hero.cta}
-                  <ArrowUpRight className="w-5 h-5" />
-                </a>
-              </Button>
+      <main id="top">
+        <section className="relative overflow-hidden pb-20 pt-32">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(209,27,55,0.16),_transparent_38%),radial-gradient(circle_at_80%_20%,_rgba(155,22,48,0.16),_transparent_30%),linear-gradient(180deg,_rgba(255,233,237,0.7),_transparent_55%)] dark:bg-[radial-gradient(circle_at_top_left,_rgba(255,156,171,0.22),_transparent_34%),radial-gradient(circle_at_80%_20%,_rgba(209,27,55,0.2),_transparent_28%),linear-gradient(180deg,_rgba(53,16,24,0.9),_transparent_55%)]" />
+          <div className="container relative">
+            <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+              <div className="max-w-3xl">
+                <Badge className="mb-6 border-[#d11b37]/20 bg-[#d11b37]/10 px-4 py-2 text-sm text-[#a0142b] dark:bg-[#ff9cab]/20 dark:text-[#ffd3da]" variant="secondary">
+                  {t.hero.badge}
+                </Badge>
+                <h1 className="max-w-4xl text-5xl font-bold leading-tight md:text-7xl md:leading-[1.05] bg-gradient-to-r from-[#d11b37] via-[#b3172f] to-[#7f1024] bg-clip-text text-transparent dark:from-[#ffd4db] dark:via-[#ff9cab] dark:to-[#ffcad4]">
+                  {t.hero.title}
+                </h1>
+                <p className="mt-6 max-w-2xl text-xl leading-8 text-muted-foreground md:text-2xl">
+                  {t.hero.description}
+                </p>
+
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <a
+                    href={appStoreUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="transition-transform duration-200 hover:-translate-y-0.5"
+                  >
+                    <img
+                      src="/store-badges/app-store-badge.svg"
+                      alt={t.download.appStoreAlt}
+                      className="h-14 w-auto sm:h-16"
+                    />
+                  </a>
+                  <a
+                    href={playStoreUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="transition-transform duration-200 hover:-translate-y-0.5"
+                  >
+                    <img
+                      src="/store-badges/google-play-badge.svg"
+                      alt={t.download.playStoreAlt}
+                      className="h-14 w-auto sm:h-16"
+                    />
+                  </a>
+                </div>
+
+                <p className="mt-4 text-sm font-medium text-[#8f1528] dark:text-[#f6c1ca]">
+                  {t.hero.availability}
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {heroHighlights.map((highlight) => (
+                    <div
+                      key={highlight}
+                      className="rounded-full border border-[#d11b37]/15 bg-white/75 px-4 py-2 text-sm font-medium text-[#8f1528] shadow-sm backdrop-blur dark:border-[#ff9cab]/20 dark:bg-[#1c1416]/70 dark:text-[#ffd6dd]"
+                    >
+                      {highlight}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8">
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="border-[#d11b37]/25 bg-white/80 text-[#8f1528] shadow-sm hover:bg-[#fff4f6] dark:border-[#ff9cab]/30 dark:bg-[#1c1416]/80 dark:text-[#ffd6dd] dark:hover:bg-[#28171b]"
+                  >
+                    <a href="#story">
+                      {t.hero.secondaryCta}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
+
+              <Card className="overflow-hidden border-[#d11b37]/15 bg-white/80 shadow-[0_24px_80px_-40px_rgba(120,12,32,0.55)] backdrop-blur dark:border-[#ff9cab]/15 dark:bg-[#1c1416]/80">
+                <div className="h-1 w-full bg-gradient-to-r from-[#d11b37] via-[#ff9cab] to-[#ffd3da]" />
+                <CardHeader className="space-y-4 p-8">
+                  <Badge variant="secondary" className="w-fit border-[#d11b37]/15 bg-[#fff4f6] text-[#a0142b] dark:bg-[#2a171b] dark:text-[#ffd6dd]">
+                    {t.identity.badge}
+                  </Badge>
+                  <CardTitle className="text-3xl leading-tight text-[#7b1223] dark:text-[#ffd6dd]">
+                    {t.identity.title}
+                  </CardTitle>
+                  <CardDescription className="text-base leading-7 text-[#7d3140] dark:text-[#e1b4bc]">
+                    {t.identity.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="grid gap-4 p-8 pt-0">
+                  {t.identity.points.map((point) => (
+                    <div
+                      key={point.title}
+                      className="rounded-2xl border border-[#d11b37]/10 bg-[#fff8f9] p-4 dark:border-[#ff9cab]/10 dark:bg-[#24171a]"
+                    >
+                      <p className="font-semibold text-[#7b1223] dark:text-[#ffd6dd]">{point.title}</p>
+                      <p className="mt-2 text-sm leading-6 text-[#8e3241] dark:text-[#e1b4bc]">{point.description}</p>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
             </div>
-            <p className="mt-4 text-sm font-medium text-[#8f1528] dark:text-[#f6c1ca]">
-              {t.hero.status}
-            </p>
-            <div className="mt-12 flex items-center justify-center gap-8 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Smartphone className="w-4 h-4" />
-                <span>iOS 17+</span>
+          </div>
+        </section>
+
+        <section id="story" className="py-20">
+          <div className="container">
+            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+              <div className="max-w-3xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#b3172f] dark:text-[#ffb6c2]">
+                  {t.story.eyebrow}
+                </p>
+                <h2 className="mt-4 text-4xl font-bold leading-tight text-[#b3172f] dark:text-[#ffb6c2] md:text-5xl">
+                  {t.story.title}
+                </h2>
+                <p className="mt-6 text-lg leading-8 text-muted-foreground">{t.story.paragraphOne}</p>
+                <p className="mt-5 text-lg leading-8 text-muted-foreground">{t.story.paragraphTwo}</p>
               </div>
-              <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4" />
-                <span>{t.hero.realtime}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4" />
-                <span>{t.hero.backend}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-20 bg-background">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#b3172f] dark:text-[#ffb6c2]">{t.features.title}</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t.features.subtitle}
-            </p>
-          </div>
+              <div className="grid gap-5">
+                <Card className="border-[#d11b37]/12 bg-white/80 dark:border-[#ff9cab]/12 dark:bg-[#1d1417]">
+                  <CardHeader>
+                    <CardTitle className="text-2xl text-[#7b1223] dark:text-[#ffd6dd]">{t.story.cardTitle}</CardTitle>
+                    <CardDescription className="text-base leading-7 text-[#8e3241] dark:text-[#e1b4bc]">
+                      {t.story.cardDescription}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="border-2 hover:border-primary/50 transition-all duration-300">
-              <CardHeader>
-                <Shield className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>{tr("Complete Authentication", "Authentification complete")}</CardTitle>
-                <CardDescription>
-                  {tr(
-                    "Secure sign-in and registration with Firebase Authentication, including profile setup, sports preferences, and availability.",
-                    "Connexion et inscription securisees avec Firebase Authentication, incluant la configuration du profil, les sports preferes et les disponibilites.",
-                  )}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-all duration-300">
-              <CardHeader>
-                <Users className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>{tr("User Profiles", "Profils utilisateurs")}</CardTitle>
-                <CardDescription>
-                  {tr(
-                    "Personalized profiles with sports interests, schedule preferences, and editable account information.",
-                    "Profils personnalises avec interets sportifs, preferences d'horaire et informations de compte modifiables.",
-                  )}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-all duration-300">
-              <CardHeader>
-                <MapPin className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>{tr("Interactive Maps", "Cartes interactives")}</CardTitle>
-                <CardDescription>
-                  {tr(
-                    "Explore venues and activities with map markers, filters, and zoom-aware discovery powered by Apple MapKit.",
-                    "Explorez les lieux et activites avec des marqueurs, des filtres et une decouverte adaptee au zoom via Apple MapKit.",
-                  )}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-all duration-300">
-              <CardHeader>
-                <Eye className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>{tr("Search & Filter Activities", "Recherche et filtres d'activites")}</CardTitle>
-                <CardDescription>
-                  {tr(
-                    "Switch between map and list views, then refine results by date, distance, and sport type.",
-                    "Basculez entre la vue carte et liste, puis affinez les resultats par date, distance et type de sport.",
-                  )}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-all duration-300">
-              <CardHeader>
-                <Calendar className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>{tr("Create & Manage Activities", "Creer et gerer des activites")}</CardTitle>
-                <CardDescription>
-                  {tr(
-                    "Create complete events with schedule, location, participant limits, and details, then update or manage them later.",
-                    "Creez des evenements complets avec horaire, lieu, limite de participants et details, puis mettez-les a jour facilement.",
-                  )}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-all duration-300">
-              <CardHeader>
-                <Zap className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>{tr("Real-time Updates", "Mises a jour en temps reel")}</CardTitle>
-                <CardDescription>
-                  {tr(
-                    "Activity and participation changes sync instantly with Firestore to keep everyone on the same page.",
-                    "Les changements d'activites et de participation se synchronisent instantanement avec Firestore.",
-                  )}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-all duration-300">
-              <CardHeader>
-                <TrendingUp className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>{tr("Smart Recommendations", "Recommandations intelligentes")}</CardTitle>
-                <CardDescription>
-                  {tr(
-                    "The home experience surfaces relevant activity suggestions based on your profile and engagement.",
-                    "L'accueil met en avant des suggestions pertinentes selon votre profil et votre activite.",
-                  )}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-all duration-300">
-              <CardHeader>
-                <CheckCircle2 className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>{tr("Accessibility Support", "Support d'accessibilite")}</CardTitle>
-                <CardDescription>
-                  {tr(
-                    "Accessibility-first interactions, including VoiceOver-friendly labels and predictable navigation patterns.",
-                    "Interactions concues pour l'accessibilite, avec labels compatibles VoiceOver et navigation previsible.",
-                  )}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Technology Section */}
-      <section id="technology" className="py-20 bg-accent/30">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#b3172f] dark:text-[#ffb6c2]">{t.tech.title}</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t.tech.subtitle}
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <Card>
-              <CardHeader>
-                <Code className="w-10 h-10 text-primary mb-3" />
-                <CardTitle className="text-2xl">{tr("Native iOS Development", "Developpement iOS natif")}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium">Swift & SwiftUI</p>
-                    <p className="text-sm text-muted-foreground">{tr("Modern declarative UI framework for fluid, native interfaces", "Framework UI declaratif moderne pour des interfaces fluides et natives")}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium">Xcode IDE</p>
-                    <p className="text-sm text-muted-foreground">{tr("Real-time simulation and debugging capabilities", "Simulation en temps reel et capacites avancees de debogage")}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium">iOS 17+ Target</p>
-                    <p className="text-sm text-muted-foreground">{tr("Simplified testing and access to latest platform features", "Tests simplifies et acces aux dernieres fonctionnalites de la plateforme")}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium">Native Components</p>
-                    <p className="text-sm text-muted-foreground">{tr("Location services, notifications, and calendar integration", "Services de localisation, notifications et integration calendrier")}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Database className="w-10 h-10 text-primary mb-3" />
-                <CardTitle className="text-2xl">{tr("Cloud Backend", "Backend cloud")}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium">Firebase Authentication</p>
-                    <p className="text-sm text-muted-foreground">{tr("Secure user authentication and session management", "Authentification utilisateur securisee et gestion des sessions")}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium">Cloud Firestore</p>
-                    <p className="text-sm text-muted-foreground">{tr("NoSQL database with real-time synchronization", "Base NoSQL avec synchronisation en temps reel")}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium">Firebase Storage</p>
-                    <p className="text-sm text-muted-foreground">{tr("Scalable cloud storage for profile images and media", "Stockage cloud evolutif pour images de profil et medias")}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium">Apple MapKit</p>
-                    <p className="text-sm text-muted-foreground">{tr("Native map integration with sports facility data and location services", "Integration carte native avec donnees d'infrastructures sportives et services de localisation")}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="mt-12 max-w-4xl mx-auto">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">{t.tech.architectureTitle}</CardTitle>
-                <CardDescription>
-                  {t.tech.architectureSubtitle}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  <div className="p-4 bg-accent/50 rounded-lg">
-                    <p className="font-semibold mb-1">AppEntry</p>
-                    <p className="text-sm text-muted-foreground">{tr("Application initialization", "Initialisation de l'application")}</p>
-                  </div>
-                  <div className="p-4 bg-accent/50 rounded-lg">
-                    <p className="font-semibold mb-1">Authentication</p>
-                    <p className="text-sm text-muted-foreground">{tr("Login & registration flows", "Flux de connexion et d'inscription")}</p>
-                  </div>
-                  <div className="p-4 bg-accent/50 rounded-lg">
-                    <p className="font-semibold mb-1">Core</p>
-                    <p className="text-sm text-muted-foreground">{tr("Models, services & extensions", "Modeles, services et extensions")}</p>
-                  </div>
-                  <div className="p-4 bg-accent/50 rounded-lg">
-                    <p className="font-semibold mb-1">Navigation</p>
-                    <p className="text-sm text-muted-foreground">{tr("Home, Discover, Create, Bookings", "Accueil, Decouvrir, Creer, Reservations")}</p>
-                  </div>
-                  <div className="p-4 bg-accent/50 rounded-lg">
-                    <p className="font-semibold mb-1">Resources</p>
-                    <p className="text-sm text-muted-foreground">{tr("Assets & configuration", "Assets et configuration")}</p>
-                  </div>
-                  <div className="p-4 bg-accent/50 rounded-lg">
-                    <p className="font-semibold mb-1">Shared</p>
-                    <p className="text-sm text-muted-foreground">{tr("Reusable components", "Composants reutilisables")}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Screenshots Section */}
-      <section id="screenshots" className="py-20 bg-background">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#b3172f] dark:text-[#ffb6c2]">{t.screenshots.title}</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t.screenshots.subtitle}
-            </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            <div className="bg-card rounded-lg border border-border overflow-hidden shadow-lg mb-8">
-              <div className="relative w-full bg-muted/50 flex items-center justify-center" style={{ height: "650px" }}>
-                <img
-                  src={screenshots[selectedScreenshot].src}
-                  alt={screenshots[selectedScreenshot].title[language]}
-                  className="w-auto h-full object-contain px-4 py-8"
-                />
+                <Card className="border-[#d11b37]/12 bg-[#fff4f6] dark:border-[#ff9cab]/12 dark:bg-[#26171b]">
+                  <CardHeader>
+                    <CardTitle className="text-2xl text-[#7b1223] dark:text-[#ffd6dd]">{t.story.noteTitle}</CardTitle>
+                    <CardDescription className="text-base leading-7 text-[#8e3241] dark:text-[#e1b4bc]">
+                      {t.story.noteDescription}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className="flex flex-wrap gap-3 justify-center">
-              {screenshots.map((screenshot, index) => (
-                <Button
-                  key={index}
-                  onClick={() => setSelectedScreenshot(index)}
-                  variant={selectedScreenshot === index ? "default" : "outline"}
-                  className="text-sm px-4 py-2 transition-all duration-200"
+        <section id="community" className="bg-accent/30 py-20">
+          <div className="container">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#b3172f] dark:text-[#ffb6c2]">
+                {t.community.eyebrow}
+              </p>
+              <h2 className="mt-4 text-4xl font-bold text-[#b3172f] dark:text-[#ffb6c2] md:text-5xl">
+                {t.community.title}
+              </h2>
+              <p className="mt-5 text-xl text-muted-foreground">{t.community.subtitle}</p>
+            </div>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {brandPillars.map(({ icon: Icon, title, description }) => (
+                <Card
+                  key={title}
+                  className="border-[#d11b37]/12 bg-white/85 shadow-[0_20px_70px_-45px_rgba(120,12,32,0.55)] dark:border-[#ff9cab]/12 dark:bg-[#1b1416]/85"
                 >
-                  {screenshot.title[language]}
-                </Button>
+                  <CardHeader className="space-y-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#fff1f4] text-[#d11b37] dark:bg-[#2c181c] dark:text-[#ffb6c2]">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <CardTitle className="text-2xl text-[#7b1223] dark:text-[#ffd6dd]">{title}</CardTitle>
+                    <CardDescription className="text-base leading-7 text-[#8e3241] dark:text-[#e1b4bc]">
+                      {description}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Testing & Performance Section */}
-      <section id="testing" className="py-20 bg-accent/30">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#b3172f] dark:text-[#ffb6c2]">{t.testing.title}</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t.testing.subtitle}
-            </p>
-          </div>
+        <section id="download" className="py-24">
+          <div className="container">
+            <Card className="overflow-hidden border-0 bg-gradient-to-br from-[#5d0816] via-[#8f1528] to-[#d11b37] text-white shadow-[0_30px_90px_-30px_rgba(93,8,22,0.8)]">
+              <CardContent className="grid gap-8 p-8 md:p-12 lg:grid-cols-[1fr_auto] lg:items-center">
+                <div className="max-w-2xl">
+                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#ffd7de]">
+                    {t.download.availability}
+                  </p>
+                  <h2 className="mt-4 text-4xl font-bold leading-tight md:text-5xl">{t.download.title}</h2>
+                  <p className="mt-5 text-lg leading-8 text-[#ffe5e9]">{t.download.description}</p>
+                </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">{tr("Unit & Functional Tests", "Tests unitaires et fonctionnels")}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  {tr(
-                    "XCTest coverage across models, ViewModels, and key user flows to reduce regressions as features evolve.",
-                    "Couverture XCTest sur les modeles, ViewModels et flux cles pour limiter les regressions.",
-                  )}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">{tr("Performance Metrics", "Indicateurs de performance")}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  {tr(
-                    "Iterative profiling to improve CPU and memory behavior during map rendering, navigation, and list interactions.",
-                    "Profiling iteratif pour ameliorer CPU et memoire lors du rendu carte, de la navigation et des interactions liste.",
-                  )}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">{tr("Usability Testing", "Tests d'utilisabilite")}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  {tr(
-                    "Structured validation with real users and practical scenarios to keep refining UX after launch.",
-                    "Validation structuree avec de vrais utilisateurs et scenarios pratiques pour continuer a affiner l'UX apres le lancement.",
-                  )}
-                </p>
+                <div className="flex flex-wrap gap-4 lg:justify-end">
+                  <a
+                    href={appStoreUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="transition-transform duration-200 hover:-translate-y-0.5"
+                  >
+                    <img
+                      src="/store-badges/app-store-badge.svg"
+                      alt={t.download.appStoreAlt}
+                      className="h-14 w-auto sm:h-16"
+                    />
+                  </a>
+                  <a
+                    href={playStoreUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="transition-transform duration-200 hover:-translate-y-0.5"
+                  >
+                    <img
+                      src="/store-badges/google-play-badge.svg"
+                      alt={t.download.playStoreAlt}
+                      className="h-14 w-auto sm:h-16"
+                    />
+                  </a>
+                </div>
               </CardContent>
             </Card>
           </div>
+        </section>
+      </main>
 
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 bg-background border-t border-border">
+      <footer className="border-t border-border bg-background py-12">
         <div className="container">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+            <div className="flex items-center gap-3">
               <img
                 src="/screenshots/sportlink-icon.png"
                 alt="SportLink logo"
-                className="w-8 h-8 rounded-sm object-cover"
+                className="h-8 w-8 rounded-lg object-cover"
               />
-              <span className="font-semibold text-lg">SportLink</span>
+              <span className="text-lg font-semibold">SportLink</span>
             </div>
-            <p className="text-sm text-muted-foreground text-center md:text-left">
+
+            <p className="max-w-xl text-center text-sm text-muted-foreground md:text-left">
               {t.footer.tagline}
             </p>
-            <div className="flex items-center gap-4">
+
+            <div className="flex flex-wrap items-center justify-center gap-4">
               <a
                 href={appStoreUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 App Store
               </a>
               <a
-                href="/open-source-licenses"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                href={playStoreUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
-                Open Source
+                Google Play
+              </a>
+              <a
+                href="/open-source-licenses"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {t.footer.openSource}
               </a>
               <a
                 href="/privacy-policy"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
-                Privacy Policy
+                {t.footer.privacy}
               </a>
               <a
                 href="/terms-and-conditions"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
-                Terms
+                {t.footer.terms}
               </a>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-border text-center">
-            <p className="text-sm text-muted-foreground">
-              © 2026 SportLink. {t.footer.rights}
-            </p>
+
+          <div className="mt-8 border-t border-border pt-8 text-center">
+            <p className="text-sm text-muted-foreground">© 2026 SportLink. {t.footer.rights}</p>
           </div>
         </div>
       </footer>
