@@ -5,6 +5,12 @@
                 "appID": "LLT44AL679.com.mlr.SportLink",
                 "components": [
                     {
+                        "/": "/events",
+                        "?": {
+                            "id": "*"
+                        }
+                    },
+                    {
                         "/": "/events/*"
                     }
                 ]
