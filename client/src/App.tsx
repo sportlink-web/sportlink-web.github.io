@@ -6,15 +6,35 @@ import OpenSourceLicenses from "@/pages/OpenSourceLicenses";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import { Route, Switch } from "wouter";
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+
+function EventsFallbackRedirect() {
+  const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    setLocation("/");
+  }, [setLocation]);
+
+  return null;
+}
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route
+        path={"/events"}
+        component={EventsFallbackRedirect}
+      />
+      <Route
+        path={"/events/:rest*"}
+        component={EventsFallbackRedirect}
+      />
       <Route path={"/account-deletion"} component={AccountDeletion} />
       <Route path={"/open-source-licenses"} component={OpenSourceLicenses} />
       <Route path={"/privacy-policy"} component={PrivacyPolicy} />
