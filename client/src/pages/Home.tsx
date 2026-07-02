@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, MapPin, Moon, Sun, Trophy, Users } from "lucide-react";
+import { ArrowRight, ArrowUpRight, MapPin, Moon, Sun, Trophy, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,6 +11,7 @@ export default function Home() {
 
   const appStoreUrl = "https://apps.apple.com/ca/app/sportlink/id6757758569";
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.mlr.sportlink&pcampaignid=web_share";
+  const astroWebsiteUrl = "https://someonelostinspace.github.io/Astro-Website/";
   const tr = (en: string, fr: string) => (language === "fr" ? fr : en);
 
   const navItems = [
@@ -151,6 +152,16 @@ export default function Home() {
       ),
       appStoreAlt: tr("Download SportLink on the App Store", "Telecharger SportLink sur l'App Store"),
       playStoreAlt: tr("Get SportLink on Google Play", "Telecharger SportLink sur Google Play"),
+    },
+    projects: {
+      eyebrow: tr("Personal projects", "Projets personnels"),
+      title: tr("More apps by Mathias.", "Autres apps par Mathias."),
+      astroTitle: "Astro",
+      astroDescription: tr(
+        "A minimal iPhone and iPad app for tracking orbital assets, reading space news, and keeping mission context close.",
+        "Une app minimale pour iPhone et iPad afin de suivre des objets orbitaux, lire l'actualite spatiale et garder le contexte des missions a portee de main.",
+      ),
+      astroCta: tr("View Astro", "Voir Astro"),
     },
     footer: {
       tagline: tr(
@@ -427,6 +438,45 @@ export default function Home() {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        <section id="projects" className="py-20">
+          <div className="container">
+            <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#b3172f] dark:text-[#ffb6c2]">
+                  {t.projects.eyebrow}
+                </p>
+                <h2 className="mt-4 text-4xl font-bold leading-tight text-[#b3172f] dark:text-[#ffb6c2] md:text-5xl">
+                  {t.projects.title}
+                </h2>
+              </div>
+
+              <Card className="border-[#d11b37]/12 bg-white/80 dark:border-[#ff9cab]/12 dark:bg-[#1d1417]">
+                <CardHeader>
+                  <CardTitle className="flex items-center justify-between gap-4 text-2xl text-[#7b1223] dark:text-[#ffd6dd]">
+                    {t.projects.astroTitle}
+                    <ArrowUpRight className="h-5 w-5 shrink-0" />
+                  </CardTitle>
+                  <CardDescription className="text-base leading-7 text-[#8e3241] dark:text-[#e1b4bc]">
+                    {t.projects.astroDescription}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="border-[#d11b37]/25 bg-white/80 text-[#8f1528] shadow-sm hover:bg-[#fff4f6] dark:border-[#ff9cab]/30 dark:bg-[#1c1416]/80 dark:text-[#ffd6dd] dark:hover:bg-[#28171b]"
+                  >
+                    <a href={astroWebsiteUrl} target="_blank" rel="noreferrer">
+                      {t.projects.astroCta}
+                      <ArrowUpRight className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </section>
       </main>
