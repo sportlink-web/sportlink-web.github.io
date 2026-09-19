@@ -173,9 +173,7 @@
 
 .product-screen-wrap img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
 }
 
 .home-section {
@@ -278,7 +276,6 @@
 
 .product-screen-wrap {
   width: 100%;
-  height: 620px;
 }
 
 .home-footer {
@@ -354,7 +351,6 @@
 
   .product-screen-wrap {
     width: min(100%, 380px);
-    height: min(148vw, 620px);
     margin-inline: auto;
     border-radius: 26px;
   }
